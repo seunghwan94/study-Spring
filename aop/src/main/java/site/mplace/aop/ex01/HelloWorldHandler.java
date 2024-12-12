@@ -13,7 +13,6 @@ public class HelloWorldHandler<T> implements InvocationHandler{
     this.t = t;
   }
 
-  
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable{
     long start = System.currentTimeMillis();

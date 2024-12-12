@@ -22,11 +22,5 @@ public class MartClient {
     Mart mart = (Mart)factory.getProxy();
     mart.getProduct("뭐래");
 
-
-    // try{
-    //   ((Mart)factory.getProxy()).getProduct("간장");
-    // }catch(RuntimeException r){
-    //   // log.error(r.getMessage());
-    // }
   }
 }

@@ -33,6 +33,10 @@ dependencies {
 	
 	testImplementation 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
+	// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+runtimeOnly group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.22.1'
+
+
 }
 
 tasks.named('test') {

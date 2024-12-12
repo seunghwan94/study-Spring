@@ -5,7 +5,7 @@ import org.aopalliance.intercept.MethodInvocation;
 
 import lombok.extern.log4j.Log4j2;
 
-// around
+// around servlet에 filter라고 생각해라
 @Log4j2
 public class Sourcing implements MethodInterceptor{
 

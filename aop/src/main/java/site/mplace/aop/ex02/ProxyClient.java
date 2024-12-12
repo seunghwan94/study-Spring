@@ -10,28 +10,35 @@ import site.mplace.aop.ex02.adv.Sourcing;
 @Log4j2
 public class ProxyClient {
   public static void main(String[] args) {
-    Chicken chicken = new Chicken();
-    Bbq bbq = new Bbq();
+    // 염지
+    // 양념 만들기
+    // 튀기기
+    // 양념 바르기
+    // 포장하기
 
-    chicken.cook("후추");
-    bbq.cook("간장");
+    // 양념 만들기
+    // 바베큐
+    // 양념 바르기
+    // 포장하기
 
     ProxyFactory factory = new ProxyFactory();
-    factory.setTarget(chicken);
+    
+    factory.setTarget(new Chicken());
     factory.addAdvice(new Seasoning());
     factory.addAdvice(new Sourcing());
     factory.addAdvice(new Packaging());
 
-    Chicken chicken2 = (Chicken)factory.getProxy();
-    log.info("===================");
-    chicken2.cook("파닭");
+    Chicken chicken = (Chicken)factory.getProxy();
+    chicken.cook("파닭");
 
-    factory = new ProxyFactory(bbq);
+    log.info("===================");
+
+    factory = new ProxyFactory(new Bbq());
     factory.addAdvice(new Sourcing());
     factory.addAdvice(new Packaging());
 
-    Bbq bbq2 = (Bbq) factory.getProxy();
-    bbq2.cook("간장");
+    Bbq bbq = (Bbq) factory.getProxy();
+    bbq.cook("간장");
     
   }
 }
