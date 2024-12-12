@@ -4,7 +4,6 @@ import org.springframework.aop.Advisor;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.framework.ProxyFactory;
-import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,8 +25,8 @@ public class Config {
 
 
   @Bean
-  public ProxyFactoryBean proxyFactory(){
-    return new ProxyFactoryBean();
+  public ProxyFactory proxyFactory(){
+    return new ProxyFactory();
   }
 
   @Bean
