@@ -21,6 +21,9 @@ public class ConfigTests {
     log.info(config.getHikariConfig().getDataSource());
     log.info(config.getHikariDataSource());
     log.info(config.getJdbcTemplate().getDataSource().getConnection());
+    
+    // log.info(config.TransactionDefinition);
+    // log.info(config.TransactionManager);
   
     // Connection connection = config.getHikariConfig().getDataSource().getConnection();
   }

@@ -1,0 +1,14 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: member_post_test
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://15.164.103.52:3306/post
+    username: test
+    password: 123
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp

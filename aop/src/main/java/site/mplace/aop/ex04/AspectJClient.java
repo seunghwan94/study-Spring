@@ -7,8 +7,6 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
 
 import site.mplace.aop.ex02.adv.Seasoning;
 
-
-
 public class AspectJClient {
   public static void main(String[] args) {
 

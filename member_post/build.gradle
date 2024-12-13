@@ -1,0 +1,58 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.1-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+// implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.98'
+// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+// implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+
+		testImplementation 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	
+// https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api
+implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
+// https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl
+implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.0'
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+  

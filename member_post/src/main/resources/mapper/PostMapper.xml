@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PostMapper">
+	<resultMap type="post" id="post">
+		<id  column="pno" property="pno"/>
+		<result column="cno" property="cno"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="writer" property="writer"/>
+		<result column="view_count" property="viewCount"/>
+		<result column="create_date" property="createDate"/>
+		<result column="update_date" property="updateDate"/>
+		<result column="create_date" property="createDate"/>
+		<result column="attach_flag" property="attachFlag"/>
+	</resultMap>
+
+  <select id="selectList" resultMap="post">
+    select tp.* , (select count(*) from tbl_attach ta where ta.pno = tp.pno) attach_flag
+    from tbl_post tp
+    where cno = #{category}
+    <if test="type != null">
+	    <trim prefix="and (" suffix=")" prefixOverrides="or">
+	    	<foreach collection="typeArr" item="t">
+	    		<if test='t == "T"'>
+		    		or title like concat('%', #{keyword},'%')
+	    		</if>
+ 	    		<if test='t == "C"'>
+		    		or content like concat('%', #{keyword},'%')
+	    		</if>
+ 	    		<if test='t == "W"'>
+		    		or writer like concat('%', #{keyword},'%')
+	    		</if>
+	    	</foreach>
+	    </trim> 
+    </if>
+    
+     
+    order by pno desc
+    limit #{amount} offset #{offset}
+  </select>
+  
+  <select id="selectOne" resultMap="post">
+    select tp.*,1 from tbl_post tp where pno = #{pno}
+  </select>
+  
+  <select id="getCount" resultType="int">
+    select count(*) as cnt from tbl_post where cno = #{category}
+  </select>
+  
+  <delete id="delete">
+  	delete from tbl_post where pno = #{pno}
+  </delete>
+  
+  <update id="increaseViewCount">
+	update tbl_post set view_count = view_count + 1 where pno = #{pno}
+  </update>
+  
+  <update id="update">
+	update tbl_post set title = #{title} , content = #{content}, update_date = now()  where pno = #{pno}
+  </update>
+  
+  <insert id="insert">
+	insert into tbl_post (title,content,writer,cno) 
+	values (#{title},#{content},#{writer},#{cno})
+	<selectKey order="AFTER" keyProperty="pno" resultType="Long">
+		select max(pno) from tbl_post
+	</selectKey>
+  </insert>
+</mapper>
