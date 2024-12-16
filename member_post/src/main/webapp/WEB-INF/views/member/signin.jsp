@@ -17,6 +17,9 @@
 
     <main class="container mb-5">
         <h1 class="text-center mt-4 fw-bold text-white">Sign in</h1>
+        <c:if test="${not empty msg}">
+          <p class="my-2 text-danger text-center">로그인 실패 - 아이디와 비밀번호를 확인하세요.</p>
+        </c:if>
         <form name="form" method="post" class="mx-auto col-8 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 card p-3 mt-4">
           <input type="text" class="form-control my-3" id="id" placeholder="아이디" name="id" value="${cookie['remember-id'].value}">
           <input type="password" class="form-control my-3" id="pw" placeholder="비밀번호" name="pw">
@@ -28,6 +31,7 @@
 
           <button class="btn btn-secondary mt-1">로그인</button>
         </form>
+        
     </main>
 
     <jsp:include page="../common/footer.jsp"/>

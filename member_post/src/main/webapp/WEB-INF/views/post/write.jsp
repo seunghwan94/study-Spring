@@ -37,7 +37,7 @@
 	          <i class="fa-solid fa-user-pen"  style="color: #48587f;"></i>
 	          <b>Writer</b>
 	        </label>
-	        <input type="text" class="form-control" id="writer" placeholder="writer" name="writer" value="${member.id}" readonly>
+	        <input type="text" class="form-control" id="writer" placeholder="writer" name="writer" value="${member.id}">
 	        
 	        <label for="attach" class="form-label text-white mt-3">
 	          <i class="fa-solid fa-paperclip" style="color: #48587f;"></i>

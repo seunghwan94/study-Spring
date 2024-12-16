@@ -2,11 +2,12 @@ package com.example.member_post.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 
 import com.example.member_post.dto.Criteria;
 import com.example.member_post.vo.Post;
 
-
+@Mapper
 public interface PostMapper {
 
 	List<Post> selectList(Criteria cri);

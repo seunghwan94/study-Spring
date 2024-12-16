@@ -21,7 +21,8 @@
           <input type="text" class="form-control my-3" id="name" placeholder="이름" name="name">
           <input type="email" class="form-control my-3" id="email" placeholder="이메일" name="email">
           
-          <input type="text" class="form-control my-3" id="roadAddr" placeholder="도로명" name="roadAddr" readonly>
+          <!-- <input type="text" class="form-control my-3" id="roadAddr" placeholder="도로명" name="roadAddr" readonly> -->
+          <input type="text" class="form-control my-3" id="roadAddr" placeholder="도로명" name="roadAddr">
           <input type="text" class="form-control my-3" id="detailAddr" placeholder="상세주소" name="detailAddr">
           
           <div class="input-group my-3">

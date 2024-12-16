@@ -1,11 +1,19 @@
 server:
   port: 9999
 spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+    
   application:
     name: member_post
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://15.164.103.52:3306/post
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mariadb://15.164.103.52:3306/post
+    # driver-class-name: org.mariadb.jdbc.Driver
+    # url: jdbc:mariadb://15.164.103.52:3306/post
     username: test
     password: 123
   mvc:

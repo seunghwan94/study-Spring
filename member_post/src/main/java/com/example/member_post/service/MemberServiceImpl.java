@@ -2,11 +2,9 @@ package com.example.member_post.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.example.member_post.mapper.MemberMapper;
-import com.example.member_post.utils.Mybatisinit;
 import com.example.member_post.vo.Member;
 
 import lombok.AllArgsConstructor;
@@ -18,10 +16,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int register(Member member) {
-		try(SqlSession session =  Mybatisinit.getInstance().sqlSessionFactory().openSession(true)){
-			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			return mapper.insert(member);
-		}
+		return mapper.insert(member);
 	}
 
 	@Override
