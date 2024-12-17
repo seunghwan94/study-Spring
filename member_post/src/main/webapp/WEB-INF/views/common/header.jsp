@@ -4,7 +4,7 @@
   <div class="container clearfix p-2">
     <!-- <a href="index.html" class="float-start"><img src="https://placehold.co/240x80?text=Mago" alt="Logo"></a> -->
     <a href="/" class="float-start"><img class="logo-img" src="https://i.namu.wiki/i/gq8rUiVxHzCh5G-6Ca7Y8jf_TrVX4N7Wd0-Zv9q0FHitA3u3prbxWGXFjFCw5lkHzKGaHDP0GCuTIp25p9TsvQ.webp" alt="Logo"></a>
-    <h1 class="float-end fw-bold p-3 text-center">Mago UI Practice</h1>
+    <h1 class="float-end fw-bold p-3 text-center">Mago UI Practice${test}</h1>
   </div>
 </header>
  <nav class="navbar navbar-expand-sm bg-dark border-secondary border-bottom">

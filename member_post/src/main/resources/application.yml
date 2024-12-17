@@ -4,6 +4,11 @@ spring:
   devtools:
     restart:
       enabled: true
+      additional-paths:
+      - src/main/java
+      - src/main/resources
+      - src/main/webapp
+      additional-exclued: static/**,templates/**
     livereload:
       enabled: true
     
