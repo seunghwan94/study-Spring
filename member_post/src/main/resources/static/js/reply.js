@@ -1,6 +1,12 @@
 // const replyService =  {};
+
+
 const replyService = (function(){ 
-  const url = "/member_post/reply";
+  const url = "/reply";
+
+	$.ajaxSetup({
+		contentType: 'application/json; charset=utf-8'
+	});
 
   function write(reply, callback){
     console.log(reply);
@@ -8,7 +14,7 @@ const replyService = (function(){
     // JSON.parse() :: json -> obj
 
     const data = JSON.stringify(reply);
-    $.post({url,data,}).done(function(data){
+    $.post({url,data}).done(function(data){
       if(callback)
         callback(data);
     })

@@ -67,6 +67,8 @@ implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', 
 implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.9.22.1'
 // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
 implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.22.1'
+// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
 
 
 }

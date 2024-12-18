@@ -31,3 +31,7 @@ mybatis:
   type-aliases-package: com.example.member_post.vo
   configuration:
     map-underscore-to-camel-case: true
+
+springdoc:
+  swagger-ui:
+    path: /swag

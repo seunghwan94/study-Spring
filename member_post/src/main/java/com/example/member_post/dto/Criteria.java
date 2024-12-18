@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.springframework.stereotype.Component;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Component
 public class Criteria {
 	private int page = 1;
 	private int amount = 10;

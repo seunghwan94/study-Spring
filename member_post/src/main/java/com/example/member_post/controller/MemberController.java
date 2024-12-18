@@ -1,9 +1,5 @@
 package com.example.member_post.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
-import org.apache.logging.log4j.core.tools.picocli.CommandLine.Parameters;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.example.member_post.dto.Criteria;
 import com.example.member_post.service.MemberService;
 import com.example.member_post.vo.Member;
-import com.example.member_post.vo.Post;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +24,6 @@ import lombok.extern.log4j.Log4j2;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -62,7 +54,6 @@ public class MemberController {
 
   @RequestMapping(value = {"","*"}, method = RequestMethod.GET) @ResponseBody
   public Member all(){
-    DispatcherServlet servlet;
     log.info(viewResolver);
     log.info(resolver.getAttributesMap());
     log.info(resolver.getOrder());

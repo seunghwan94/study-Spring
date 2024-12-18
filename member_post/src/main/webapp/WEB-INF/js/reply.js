@@ -1,6 +1,6 @@
 // const replyService =  {};
 const replyService = (function(){ 
-  const url = "/member_post/reply";
+  const url = "/reply";
 
   function write(reply, callback){
     console.log(reply);
