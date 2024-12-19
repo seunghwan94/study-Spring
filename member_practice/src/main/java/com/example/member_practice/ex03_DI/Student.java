@@ -1,6 +1,5 @@
 package com.example.member_practice.ex03_DI;
 
-import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

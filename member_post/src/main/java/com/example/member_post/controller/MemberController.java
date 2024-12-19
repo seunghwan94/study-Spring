@@ -75,9 +75,6 @@ public class MemberController {
     @Nullable @RequestParam(required = false, value = "remember-id") String remember,
     HttpSession session, Model model, RedirectAttributes rttr, HttpServletResponse resp, HttpServletRequest req) {
   // public String postSignin(Member member,@Nullable @RequestParam("remember-id") String remember) {
-      log.info(remember);
-      log.info(member);
-      
 
       if(service.login(member.getId(), member.getPw())){
         // 성공
@@ -94,7 +91,6 @@ public class MemberController {
         resp.addCookie(cookie);
         
         String url = req.getParameter("url");
-
         if(url==null){
           url = "/";
         }

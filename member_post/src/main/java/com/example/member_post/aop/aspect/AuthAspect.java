@@ -1,15 +1,19 @@
-package com.example.member_post.aop;
+package com.example.member_post.aop.aspect;
 
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import com.example.member_post.exception.NotMyPostException;
+import com.example.member_post.exception.UnsignedAuthException;
 import com.example.member_post.vo.Member;
+import com.example.member_post.vo.Post;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,20 +30,6 @@ public class AuthAspect {
   private HttpServletRequest req;
   private HttpServletResponse resp;
 
-  @Before("@annotation(com.example.member_post.aop.MyPost)")
-  public void myPost(JoinPoint joinPoint) { 
-    Object obj= session.getAttribute("member");
-    String id = ((Member) obj).getId(); // 현재로그인 사용자
-
-    Object[] args = joinPoint.getArgs();
-    // String writerParam = myPost.value();
-
-
-    // if(obj == null || ((Member)obj).getId().equals(post.getWriter())){
-    //   throw new RuntimeException("본인 게시글 아님");
-    // }
-  }
-
   @Before("@annotation(com.example.member_post.aop.SigninCheck)")
   public void signinCheck(JoinPoint jp) throws IOException{
     String url = "/member/signin?url=" + URLEncoder.encode(req.getRequestURI() + "?" + req.getQueryString(), "utf-8");
@@ -49,4 +39,26 @@ public class AuthAspect {
     }
   }
 
+
+  @Before("@annotation(com.example.member_post.aop.MyPost)")
+  public void myPost(JoinPoint joinPoint) throws IOException { 
+    Object o= session.getAttribute("member");
+    
+    if(o == null){
+      throw new UnsignedAuthException("비로그인 상태");
+    }
+    
+    String id = ((Member) o).getId(); // 현재로그인 사용자
+    
+    Object[] args = joinPoint.getArgs();
+    for(Object obj : args){
+      if(obj instanceof Post && !((Post)obj).getWriter().equals(id)){
+        throw new NotMyPostException("본인 게시글 아님");
+      }
+    }
+    log.error(id);
+  }
+
+
+  // 공용 에러 메시지 보내면 좋다
 }

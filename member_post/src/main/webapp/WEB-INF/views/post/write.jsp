@@ -88,10 +88,10 @@
 			let strHidden = '';
 			for(let i in data){
 				str += `<li class="list-group-item">\${data[i].origin}</li>`;
-				strHidden += `<input type="hidden" name="uuid" value="\${data[i].uuid}">`;
-				strHidden += `<input type="hidden" name="origin" value="\${data[i].origin}">`;
-				strHidden += `<input type="hidden" name="image" value="\${data[i].image}">`;
-				strHidden += `<input type="hidden" name="path" value="\${data[i].path}">`;
+				strHidden += `<input type="hidden" name="attachs[\${i}].uuid" value="\${data[i].uuid}">`;
+				strHidden += `<input type="hidden" name="attachs[\${i}].origin" value="\${data[i].origin}">`;
+				strHidden += `<input type="hidden" name="attachs[\${i}].image" value="\${data[i].image}">`;
+				strHidden += `<input type="hidden" name="attachs[\${i}].path" value="\${data[i].path}">`;
 			}
 			$(".attach-result").html(str);
 			$(".uploaded-input").html(strHidden);

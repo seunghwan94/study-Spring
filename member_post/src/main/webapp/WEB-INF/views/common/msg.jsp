@@ -4,12 +4,20 @@
 
 <script>
   alert('${msg}');
+  let url = "${url}";
+  
+  // if(url.includes('url=')){
+  //   const arr = url.split("?");
+  //   url = arr[0] +"?"+ arr[1] +"?"+ encodeURIComponent(arr[2]);
+  // }
+
   <c:choose>
     <c:when test="${not empty url}">
-      location.href = "${url}";
+      location.href = url;
     </c:when>
     <c:otherwise>
       history.back();
     </c:otherwise>
   </c:choose>
+
 </script>

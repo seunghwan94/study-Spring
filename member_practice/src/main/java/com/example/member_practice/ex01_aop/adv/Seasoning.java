@@ -2,7 +2,6 @@ package com.example.member_practice.ex01_aop.adv;
 
 import java.lang.reflect.Method;
 
-import org.springframework.aop.BeforeAdvice;
 import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.lang.Nullable;
 

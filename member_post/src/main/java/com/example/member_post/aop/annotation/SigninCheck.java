@@ -1,4 +1,4 @@
-package com.example.member_post.aop;
+package com.example.member_post.aop.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

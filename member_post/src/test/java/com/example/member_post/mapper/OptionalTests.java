@@ -16,6 +16,7 @@ public class OptionalTests {
     log.info(o);
     log.info(o.isPresent());
     log.info(o.get());
+    log.info(o.or(()->Optional.of("가")));
   }
 
 }
