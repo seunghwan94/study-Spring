@@ -1,6 +1,10 @@
 server:
   port: 9999
+
 spring:
+  application:
+    name: practice
+
   devtools:
     restart:
       enabled: true
@@ -11,30 +15,21 @@ spring:
       additional-exclude: static/**,templates/**
     livereload:
       enabled: true
-    
-  application:
-    name: member_post
+
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mariadb://15.164.103.52:3306/post
-    # driver-class-name: org.mariadb.jdbc.Driver
-    # url: jdbc:mariadb://15.164.103.52:3306/post
     username: test
     password: 123
+
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+
 mybatis:
   mapper-locations:
   - classpath:mapper/*.xml  
-  type-aliases-package: com.example.member_post.vo
+  type-aliases-package: com.example.practice.vo
   configuration:
     map-underscore-to-camel-case: true
-
-springdoc:
-  swagger-ui:
-    path: /swag
-
-upload:
-  path: c:/upload
