@@ -21,7 +21,6 @@ import com.example.member_post.vo.Post;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 
 
@@ -29,7 +28,6 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @RequestMapping("post")
 @AllArgsConstructor
-@Log4j2
 public class PostController {
   private PostService service;
 
@@ -60,8 +58,7 @@ public class PostController {
   @PostMapping("write")
   public String postWrite(Post post, Criteria cri) { 
     post.setCno(cri.getCategory());
-    // service.write(post);
-    log.error(post);
+    service.write(post);
     return "redirect:list?" + cri.getQs2();
 
   }
@@ -92,7 +89,7 @@ public class PostController {
 
   @RequestMapping("remove")
   public String remove(@RequestParam("pno") Long pno, Criteria cri) {
-    service.remove(pno); 
+    service.remove(pno);
     return "redirect:list?" + cri.getQs();
   }
 

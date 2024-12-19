@@ -38,7 +38,7 @@ public class Attach {
 		if(dotIdx != -1){
 			ext = origin.substring(dotIdx);
 		}
-		String uuid = UUID.randomUUID().toString();
+		uuid = UUID.randomUUID().toString();
 		String realName = uuid + ext;
 		path = getTodayStr();
 		File parentPath = new File(UPLOAD_PATH, path);
@@ -70,9 +70,7 @@ public class Attach {
 	}
 		
 	public File toFile(){
-		return null;
+		return new File (new File(UPLOAD_PATH, path), uuid);
 	}
-
-
 
 }

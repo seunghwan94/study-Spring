@@ -56,7 +56,6 @@ public class AuthAspect {
         throw new NotMyPostException("본인 게시글 아님");
       }
     }
-    log.error(id);
   }
 
 
