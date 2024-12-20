@@ -73,6 +73,9 @@ implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-u
 // https://mvnrepository.com/artifact/net.coobird/thumbnailator
 implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.20'
 
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-quartz
+// Spring Boot Starter Quartz 
+implementation group: 'org.springframework.boot', name: 'spring-boot-starter-quartz', version: '3.4.0'
 
 }
 

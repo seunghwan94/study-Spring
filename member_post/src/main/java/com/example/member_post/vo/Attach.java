@@ -12,11 +12,21 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import net.coobird.thumbnailator.Thumbnailator;
 
-@Data
+
+// 이거 spring에서는 잘 사용안한다.
+// @Data
+@Getter
+@Setter
+@ToString
+// // uuid만 다르고 나머지는 같을수도 있다. 
+// @EqualsAndHashCode(of = "uuid")
+
 @Builder
 @Alias("attach")
 @AllArgsConstructor
@@ -39,7 +49,7 @@ public class Attach {
 			ext = origin.substring(dotIdx);
 		}
 		uuid = UUID.randomUUID().toString();
-		String realName = uuid + ext;
+		String realName = uuid = uuid + ext;
 		path = getTodayStr();
 		File parentPath = new File(UPLOAD_PATH, path);
 		if(!parentPath.exists()){
@@ -68,9 +78,28 @@ public class Attach {
 	public String getTodayStr() {
 		return new SimpleDateFormat("yyyy/MM/dd").format(System.currentTimeMillis());
 	}
+
+	public static Attach fromFile(File file){
+		return Attach.builder().uuid(file.getName()).build();
+	}
 		
 	public File toFile(){
 		return new File (new File(UPLOAD_PATH, path), uuid);
 	}
 
+
+
+	// @EqualsAndHashCode 대신에 사용한다.
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && obj instanceof Attach && uuid.equals( ((Attach)obj).uuid );
+	}
+	// 동일객체 일때만 사용한다.
+	@Override
+	public int hashCode() {
+		return uuid.hashCode();
+	}
+
+
+	
 }
