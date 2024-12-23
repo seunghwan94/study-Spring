@@ -7,14 +7,21 @@
 </head>
 <body>
   <h1>hellof mustachedfww</h1>
+  {! excape=괄호 두개, none = 괄호 세개 }
   <form method="post">
-    <input type="text" name="task" placeholder="할 일 입력">
+    <input type="text" name="task" placeholder="할 일 입력" autofocus>
     <button>ADD</button>
   </form>
-  <ul>
-    {{#todos}}
-    <li>{{task}}</li>
-    {{/todos}}
-  </ul>
+  <form action="todos/remove">
+    <ul>
+      {{#todos}}
+        <li>{{{task}}}
+          <button name="id" value="{{id}}">삭제</button>
+          {{#done}} 달성 {{/done}}
+          {{^done}}  <button name="id" value="{{id}}" formaction="todos/modify"> 미달성 </button>{{/done}}
+        </li>
+      {{/todos}}
+    </ul>
+  </form>
 </body>
 </html>

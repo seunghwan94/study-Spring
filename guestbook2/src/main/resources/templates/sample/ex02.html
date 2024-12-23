@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <!--/* <li th:each="dto, state : ${list}" th:if="${dto.sno % 5 == 0}">
+      [[${state.index}]] ---- [[${state.count}]] ---- [[${dto}]]
+    </li> */-->
+
+    <!--/* <li th:each="dto, state : ${list}">
+      <span th:if="${dto.sno % 5 == 0}" th:text="${'-------' + dto.sno}"></span>
+      <span th:unless="${dto.sno % 5 == 0}" th:text="${dto.first}"></span>
+      <span th:if="${dto.sno % 5 != 0}" th:text="${dto.first}"></span>
+    </li> */-->
+
+
+    <!--/* <li th:each="dto, state : ${list}" th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"></li> */-->
+    <!--/* <li th:each="dto, state : ${list}" th:text="${dto.sno % 5 == 0} ? ${dto.sno}"></li> */-->
+    
+    <th:block th:each="dto : ${list}">
+      <li th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"></li>
+      <li th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"></li>
+    </th:block>
+  </ul>  
+</body>
+</html>
