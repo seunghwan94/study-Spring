@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>fragment TEST</h1>
+
+  <h1>Layout 1 - 1</h1>
+  <div th:replace="~{/fragments/fragment1 :: part1}"></div>
+  <h1>Layout 1 - 2</h1>
+  <div th:insert="~{/fragments/fragment1 :: part2}"></div>
+  <h1>Layout 1 - 3</h1>
+  <div th:replace="~{/fragments/fragment1 :: part3}"></div>
+
+  <h1>Layout 1 - 4</h1>
+  <div th:replace="~{/fragments/fragment1}"></div>
+</body>
+</html>
