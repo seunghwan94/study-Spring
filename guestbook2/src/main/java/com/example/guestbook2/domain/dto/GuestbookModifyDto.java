@@ -2,7 +2,7 @@ package com.example.guestbook2.domain.dto;
 
 import java.time.LocalDateTime;
 
-import com.example.guestbook2.domain.entity.GuestbookEntity;
+import com.example.guestbook2.domain.entity.Guestbook;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,8 +26,8 @@ public class GuestbookModifyDto {
   private LocalDateTime regDate;
   private LocalDateTime modDate;
 
-  public GuestbookEntity toEntity(){
-    return GuestbookEntity.builder()
+  public Guestbook toEntity(){
+    return Guestbook.builder()
       .gno(gno)
       .title(title)
       .content(content)

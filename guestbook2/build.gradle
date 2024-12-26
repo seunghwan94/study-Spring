@@ -72,6 +72,20 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+// QueryDSL build 할때 오류 생길시 사용(build 전에 dir있으면 지우겠다.)
+tasks.compileJava {
+    // QueryDSL 파일 생성 디렉토리 삭제
+    doFirst {
+        def generatedDir = file("$projectDir/build/generated")
+        if (generatedDir.exists()) {
+            println "Cleaning QueryDSL generated directory: ${generatedDir}"
+            generatedDir.deleteDir()
+        }
+    }
+}
+
+
 sourceSets {
     main.java.srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
 }
+

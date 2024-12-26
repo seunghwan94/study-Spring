@@ -19,7 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "tbl_guestbook")
-public class GuestbookEntity extends BaseEntity{
+public class Guestbook extends BaseEntity{
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY) // id 생성 전략

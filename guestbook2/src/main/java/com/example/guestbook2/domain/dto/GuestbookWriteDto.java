@@ -1,6 +1,6 @@
 package com.example.guestbook2.domain.dto;
 
-import com.example.guestbook2.domain.entity.GuestbookEntity;
+import com.example.guestbook2.domain.entity.Guestbook;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,8 +22,8 @@ public class GuestbookWriteDto {
   private String writer;
   private String content;
 
-  public GuestbookEntity toEntity(){
-    return GuestbookEntity.builder()
+  public Guestbook toEntity(){
+    return Guestbook.builder()
       .gno(gno)
       .title(title)
       .content(content)

@@ -3,6 +3,39 @@
   <th:block th:replace="~{layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
       <h1>Guest Book List</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>title</th>
+            <th>writer</th>
+            <th>regdate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="g : ${result.dtoList}">
+            <th>[[${g.gno}]]</th>
+            <td>[[${g.title}]]</td>
+            <td>[[${g.writer}]]</td>
+            <td>[[${#temporals.format(g.regDate, 'yyyy/MM/dd')}]]</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Center-aligned -->
+      <ul class="pagination justify-content-center my-3" >
+        <li class="page-item">
+          <ul class="pagination">
+            <li class="page-item" th:if="${result.prev}"><a class="page-link" href="#">Previous</a></li>
+            
+            <li th:class="'page-item ' + ${result.page == p ? 'active': ''}" th:each="p : ${result.pageList}" ><a class="page-link" href="#">[[${p}]]</a></li>
+
+            <!-- <li class="page-item active"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+            
+            <li class="page-item" th:if="${result.next}"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </li>
+      </ul>
     </th:block>
   </th:block>
 
