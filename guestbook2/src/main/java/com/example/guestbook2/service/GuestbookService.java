@@ -2,11 +2,12 @@ package com.example.guestbook2.service;
 
 
 import com.example.guestbook2.domain.dto.GuestbookDto;
-import com.example.guestbook2.domain.dto.GuestbookModifyDto;
-import com.example.guestbook2.domain.dto.GuestbookViewDto;
 import com.example.guestbook2.domain.dto.PageRequestDto;
 import com.example.guestbook2.domain.dto.PageResultDto;
 import com.example.guestbook2.domain.entity.Guestbook;
+import com.example.guestbook2.domain.entity.QGuestbook;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 
 public interface GuestbookService {
   Long write(GuestbookDto dto);
@@ -14,10 +15,12 @@ public interface GuestbookService {
   PageResultDto<GuestbookDto, Guestbook> list(PageRequestDto dto);
 
 
-  void modify(GuestbookModifyDto dto);
+  void modify(GuestbookDto dto);
   void remove(Long gno);
 
-  GuestbookViewDto get(Long gno);
+  GuestbookDto read(Long gno);
+
+
 
   // interface를 구체화시키는 방법 두가 지 static default
   // dto >>> entity 변환 메서드 정의
@@ -43,4 +46,29 @@ public interface GuestbookService {
       .build();
   }
 
+  private BooleanBuilder getSearch(PageRequestDto dto){
+    String type = dto.getType();
+    BooleanBuilder builder = new BooleanBuilder();
+    QGuestbook qGuestbook = QGuestbook.guestbook;
+    BooleanExpression expression = qGuestbook.gno.gt(0L);
+    builder.and(expression);
+    if(type == null || type.trim().isEmpty()){
+      return builder;
+    }
+    
+    BooleanBuilder conditionBuilder = new BooleanBuilder();
+    String keyword = dto.getKeyword();
+    if(type.contains("T")){
+      conditionBuilder.or(qGuestbook.title.contains(type));
+    }
+    if(type.contains("C")){
+      conditionBuilder.or(qGuestbook.content.contains(type));
+    }
+    if(type.contains("W")){
+      conditionBuilder.or(qGuestbook.writer.contains(type));
+    }
+    builder.and(conditionBuilder);
+    return builder;
+  }
+  
 }

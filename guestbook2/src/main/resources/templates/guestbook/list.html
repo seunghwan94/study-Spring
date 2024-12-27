@@ -2,7 +2,10 @@
 <html lang="ko">
   <th:block th:replace="~{layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
-      <h1>Guest Book List</h1>
+      <h1>
+        Guest Book List
+        <span><a th:href="@{/guestbook/register}"><button class="btn btn-outline-primary">REGISTER</button> </a></span>
+      </h1>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -15,7 +18,11 @@
         <tbody>
           <tr th:each="g : ${result.dtoList}">
             <th>[[${g.gno}]]</th>
-            <td>[[${g.title}]]</td>
+            <td>
+              <a th:href="@{/guestbook/read(gno=${g.gno}, page=${result.page})}">
+                [[${g.title}]]
+              </a>
+            </td>
             <td>[[${g.writer}]]</td>
             <td>[[${#temporals.format(g.regDate, 'yyyy/MM/dd')}]]</td>
           </tr>
@@ -25,17 +32,47 @@
       <ul class="pagination justify-content-center my-3" >
         <li class="page-item">
           <ul class="pagination">
-            <li class="page-item" th:if="${result.prev}"><a class="page-link" href="#">Previous</a></li>
-            
-            <li th:class="'page-item ' + ${result.page == p ? 'active': ''}" th:each="p : ${result.pageList}" ><a class="page-link" href="#">[[${p}]]</a></li>
-
-            <!-- <li class="page-item active"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-            
-            <li class="page-item" th:if="${result.next}"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item" th:if="${result.prev}"><a class="page-link" th:href="@{/guestbook/list(page=${result.start - 1})}">Previous</a></li>
+            <li th:class="'page-item ' + ${result.page == p ? 'active': ''}" th:each="p : ${result.pageList}" >
+              <a class="page-link" th:href="@{/guestbook/list(page=${p})}">[[${p}]]</a>
+            </li>
+            <li class="page-item" th:if="${result.next}"><a class="page-link" th:href="@{/guestbook/list(page=${result.end + 1})}">Next</a></li>
           </ul>
         </li>
       </ul>
+
+      <!-- The Modal -->
+      <div class="modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              [[${msg}]] 번 게시글이 작성되었습니다.
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <script>
+        let msg = /*[[${msg}]]*/ "";
+        if(msg){
+          const myModal = new bootstrap.Modal(document.querySelector(".modal"));
+          myModal.show();
+        }
+      </script>
     </th:block>
   </th:block>
 

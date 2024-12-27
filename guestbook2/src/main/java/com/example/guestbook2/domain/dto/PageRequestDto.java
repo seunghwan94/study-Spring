@@ -13,6 +13,7 @@ import lombok.Data;
 @Data
 public class PageRequestDto {
   private int page, size;
+  private String type, keyword;
 
   public PageRequestDto() {
     page = 1;

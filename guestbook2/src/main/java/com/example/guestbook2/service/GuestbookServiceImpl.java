@@ -10,8 +10,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.example.guestbook2.domain.dto.GuestbookDto;
-import com.example.guestbook2.domain.dto.GuestbookModifyDto;
-import com.example.guestbook2.domain.dto.GuestbookViewDto;
 import com.example.guestbook2.domain.dto.PageRequestDto;
 import com.example.guestbook2.domain.dto.PageResultDto;
 import com.example.guestbook2.domain.entity.Guestbook;
@@ -28,12 +26,9 @@ public class GuestbookServiceImpl implements GuestbookService{
   private GuestbookRepository repository;
 
   @Override
-  public GuestbookViewDto get(Long gno) {
+  public GuestbookDto read(Long gno) {
     Optional<Guestbook> opt = repository.findById(gno);
-    if(!opt.isPresent()){
-      return null;
-    }
-    return new GuestbookViewDto(opt.get());
+    return opt.isPresent() ? toDto(opt.get()) : null;
   }
 
   
@@ -47,8 +42,8 @@ public class GuestbookServiceImpl implements GuestbookService{
   }
 
   @Override
-  public void modify(GuestbookModifyDto dto) {
-    repository.save(dto.toEntity());
+  public void modify(GuestbookDto dto) {
+    repository.save(toEntity(dto));
   }
 
   @Override
