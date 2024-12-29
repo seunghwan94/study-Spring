@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <th:block th:replace="~{index :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+      
+    <h1>
+      Thymeleaf List
+      <span><a th:href="@{/thymeleaf/register}"><button class="btn btn-outline-primary">REGISTER</button> </a></span>
+    </h1>
+    
+
+    <script>
+      let msg = /*[[${msg}]]*/ "";
+      if(msg){
+        const myModal = new bootstrap.Modal(document.querySelector(".modal"));
+        myModal.show();
+      }
+    </script>
+
+    </th:block>
+  </th:block>
+</html>

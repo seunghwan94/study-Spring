@@ -1,0 +1,70 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.1'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// QueryDSL 의존성 추가
+	implementation 'com.querydsl:querydsl-jpa:5.1.0:jakarta'
+	implementation 'com.querydsl:querydsl-apt:5.1.0:jakarta'
+	// Q Domain
+	implementation 'com.querydsl:querydsl-core:5.1.0'
+	implementation 'com.querydsl:querydsl-sql:5.1.0'
+	// log4j2
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+}
+
+configurations {
+	all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+// QueryDSL build 할때 오류 생길시 사용(build 전에 dir있으면 지우겠다.)
+tasks.compileJava {
+    // QueryDSL 파일 생성 디렉토리 삭제
+    doFirst {
+        def generatedDir = file("$projectDir/build/generated")
+        if (generatedDir.exists()) {
+            println "Cleaning QueryDSL generated directory: ${generatedDir}"
+            generatedDir.deleteDir()
+        }
+    }
+}
+sourceSets {
+    main.java.srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
+}

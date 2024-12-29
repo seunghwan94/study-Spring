@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <th:block th:replace="~{index :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+      <h1>
+        Thymeleaf List
+      </h1>
+      <form method="post">
+        <div class="mb-3 mt-3">
+          <label for="gno" class="form-label">gno</label>
+          <input type="text" class="form-control" id="gno" placeholder="Enter gno" name="gno" readonly  th:value="${dto.gno}">
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="title" class="form-label">title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter title" name="title"  th:value="${dto.title}">
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">content</label>
+          <textarea class="form-control" rows="5" id="content" name="content" placeholder="Enter content" >[[${dto.content}]]</textarea>
+        </div>
+        <div class="mb-3">
+          <label for="writer" class="form-label">writer</label>
+          <input type="text" class="form-control" id="writer" placeholder="Enter writer" name="writer" th:value="${dto.writer}">
+        </div>
+        <div class="mb-3">
+          <label for="regDate" class="form-label">regDate</label>
+          <input type="text" class="form-control" id="regDate" placeholder="Enter regDate" name="regDate" readonly th:value="${dto.regDate}">
+        </div>
+        <div class="mb-3">
+          <label for="modDate" class="form-label">modDate</label>
+          <input type="text" class="form-control" id="modDate" placeholder="Enter modDate" name="modDate" readonly th:value="${dto.modDate}">
+        </div>
+        <input type="hidden" name="page" th:value="${pageDto.page}">
+        <button class="btn btn-primary">Modify</button>
+        <button class="btn btn-danger" formaction="remove">Remove</button>
+
+        <a th:href="@{/thymeleaf/list(page=${pageDto.page})}" class="btn btn-success">List</a>
+      </form>
+    </th:block>
+  </th:block>
+
+</html>

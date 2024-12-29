@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:fragment="setContent(content)">  
+
+<head th:replace="layout/head :: head"></head>
+<body class="d-flex flex-column h-100">
+  <div class="d-flex" id="wrapper">
+    <sidebar th:replace="layout/sidebar :: sidebar"></sidebar>
+    
+    <div id="page-content-wrapper">
+      <header th:replace="layout/header :: header"></header>
+
+      <th:block th:replace="${content}"></th:block>
+      
+      <footer th:replace="layout/footer :: footer"></footer>
+    </div>
+  </div>
+  <script th:src="@{/js/scripts.js}"></script>
+</body>
+</th:block>
+</html>
