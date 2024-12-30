@@ -3,6 +3,7 @@ package com.example.guestbook2.repository;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import com.example.guestbook2.domain.entity.Guestbook;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
@@ -29,6 +31,8 @@ public class GuestbookRepositoryTests {
   //   log.info(guestbookRepository);
   // }
   @Test
+  @DisplayName("글 작성 테스트 데이터 만들기") // 실제 보여질 test name
+  @Transactional // 트랜잭션 주기 (rollback;)
   public void testInsert() {
     repository.saveAll(
     IntStream.rangeClosed(1, 300).mapToObj(i->{
@@ -67,6 +71,7 @@ public class GuestbookRepositoryTests {
       .build();
     repository.save(modifiedEntity);
   }
+
   @Test
   public void testModify2(){
     Optional<Guestbook> opt = repository.findById(1L);

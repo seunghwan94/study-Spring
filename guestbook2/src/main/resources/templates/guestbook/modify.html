@@ -31,10 +31,12 @@
           <input type="text" class="form-control" id="modDate" placeholder="Enter modDate" name="modDate" readonly th:value="${dto.modDate}">
         </div>
         <input type="hidden" name="page" th:value="${pageDto.page}">
+        <input type="hidden" name="type" th:value="${pageDto.type}">
+        <input type="hidden" name="keyword" th:value="${pageDto.keyword}">
         <button class="btn btn-primary">Modify</button>
         <button class="btn btn-danger" formaction="remove">Remove</button>
 
-        <a th:href="@{/guestbook/list(page=${pageDto.page})}" class="btn btn-success">List</a>
+        <a th:href="@{/guestbook/list(page=${pageDto.page},type=${pageDto.type}, keyword=${pageDto.keyword})}" class="btn btn-success">List</a>
       </form>
     </th:block>
   </th:block>

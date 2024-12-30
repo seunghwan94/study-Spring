@@ -26,8 +26,8 @@
           <label for="modDate" class="form-label">modDate</label>
           <input type="text" class="form-control" id="modDate" placeholder="Enter modDate" name="modDate" readonly th:value="${dto.modDate}">
         </div>
-        <a th:href="@{/guestbook/modify(gno=${dto.gno}, page=${pageDto.page})}" class="btn btn-primary">Modify</a>
-        <a th:href="@{/guestbook/list(page=${pageDto.page})}" class="btn btn-success">List</a>
+        <a th:href="@{/guestbook/modify(gno=${dto.gno}, page=${pageDto.page},type=${pageDto.type}, keyword=${pageDto.keyword})}" class="btn btn-primary">Modify</a>
+        <a th:href="@{/guestbook/list(page=${pageDto.page},type=${pageDto.type}, keyword=${pageDto.keyword})}" class="btn btn-success">List</a>
       </form>
     </th:block>
   </th:block>

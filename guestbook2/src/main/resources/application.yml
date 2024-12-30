@@ -2,8 +2,10 @@ spring:
   application:
     name: guestbook2
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://15.164.103.52:3306/guestbook
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mariadb://15.164.103.52:3306/guestbook
+    # driver-class-name: org.mariadb.jdbc.Driver
+    # url: jdbc:mariadb://15.164.103.52:3306/guestbook
     username: guestbook
     password: 1234
 
@@ -35,4 +37,3 @@ spring:
     suffix: .html
     encoding: UTF-8
     mode: html
-    

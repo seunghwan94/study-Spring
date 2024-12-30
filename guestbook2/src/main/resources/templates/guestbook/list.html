@@ -6,6 +6,28 @@
         Guest Book List
         <span><a th:href="@{/guestbook/register}"><button class="btn btn-outline-primary">REGISTER</button> </a></span>
       </h1>
+      <!-- 검색창 -->
+      <form>
+        <div>
+          <div class="form-check float-start clearfix me-4">
+            <input class="form-check-input" type="checkbox" id="title" name="type" value="T" th:checked="${pageRequestDto.type == 'T' || pageRequestDto.type == ''}">
+            <label class="form-check-label" for="title">Title</label>
+          </div>
+          <div class="form-check float-start clearfix me-4">
+            <input class="form-check-input" type="checkbox" id="content" name="type" value="C" th:checked="${pageRequestDto.type == 'C'}">
+            <label class="form-check-label" for="content">Content</label>
+          </div>
+          <div class="form-check float-start clearfix me-4">
+            <input class="form-check-input" type="checkbox" id="writer" name="type" value="W" th:checked="${pageRequestDto.type == 'W'}">
+            <label class="form-check-label" for="writer">Writer</label>
+          </div>
+        </div>
+        <div class="input-group my-3">
+          <input type="text" class="form-control" placeholder="Search" name="keyword">
+          <button class="btn btn-success" type="submit">Search</button>
+        </div>
+      </form>
+      <!-- 검색끝 -->
       <table class="table table-striped">
         <thead>
           <tr>
@@ -19,7 +41,7 @@
           <tr th:each="g : ${result.dtoList}">
             <th>[[${g.gno}]]</th>
             <td>
-              <a th:href="@{/guestbook/read(gno=${g.gno}, page=${result.page})}">
+              <a th:href="@{/guestbook/read(gno=${g.gno}, page=${result.page},type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}">
                 [[${g.title}]]
               </a>
             </td>
@@ -32,11 +54,12 @@
       <ul class="pagination justify-content-center my-3" >
         <li class="page-item">
           <ul class="pagination">
-            <li class="page-item" th:if="${result.prev}"><a class="page-link" th:href="@{/guestbook/list(page=${result.start - 1})}">Previous</a></li>
+            <li class="page-item" th:if="${result.prev}">
+              <a class="page-link" th:href="@{/guestbook/list(page=${result.start - 1},type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword}) }">Previous</a></li>
             <li th:class="'page-item ' + ${result.page == p ? 'active': ''}" th:each="p : ${result.pageList}" >
-              <a class="page-link" th:href="@{/guestbook/list(page=${p})}">[[${p}]]</a>
+              <a class="page-link" th:href="@{/guestbook/list(page=${p},type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}">[[${p}]]</a>
             </li>
-            <li class="page-item" th:if="${result.next}"><a class="page-link" th:href="@{/guestbook/list(page=${result.end + 1})}">Next</a></li>
+            <li class="page-item" th:if="${result.next}"><a class="page-link" th:href="@{/guestbook/list(page=${result.end + 1},type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}">Next</a></li>
           </ul>
         </li>
       </ul>

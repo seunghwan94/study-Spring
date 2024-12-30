@@ -9,13 +9,19 @@
         <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>
-        <Logger level="info" name="jdbc.resultsettable" additivity="false">
+        <Logger level="warn" name="jdbc.audit" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger level="info" name="jdbc.sqltiming" additivity="false">
+        <Logger level="warn" name="jdbc.resultset" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger level="info" name="com.example" additivity="false">
+        <Logger level="warn" name="jdbc.sqlonly" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger level="warn" name="jdbc.connection" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger level="info" name="com.hjham" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
     </Loggers>

@@ -5,9 +5,7 @@ import com.example.guestbook2.domain.dto.GuestbookDto;
 import com.example.guestbook2.domain.dto.PageRequestDto;
 import com.example.guestbook2.domain.dto.PageResultDto;
 import com.example.guestbook2.domain.entity.Guestbook;
-import com.example.guestbook2.domain.entity.QGuestbook;
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.dsl.BooleanExpression;
+
 
 public interface GuestbookService {
   Long write(GuestbookDto dto);
@@ -46,29 +44,8 @@ public interface GuestbookService {
       .build();
   }
 
-  private BooleanBuilder getSearch(PageRequestDto dto){
-    String type = dto.getType();
-    BooleanBuilder builder = new BooleanBuilder();
-    QGuestbook qGuestbook = QGuestbook.guestbook;
-    BooleanExpression expression = qGuestbook.gno.gt(0L);
-    builder.and(expression);
-    if(type == null || type.trim().isEmpty()){
-      return builder;
-    }
+
     
-    BooleanBuilder conditionBuilder = new BooleanBuilder();
-    String keyword = dto.getKeyword();
-    if(type.contains("T")){
-      conditionBuilder.or(qGuestbook.title.contains(type));
-    }
-    if(type.contains("C")){
-      conditionBuilder.or(qGuestbook.content.contains(type));
-    }
-    if(type.contains("W")){
-      conditionBuilder.or(qGuestbook.writer.contains(type));
-    }
-    builder.and(conditionBuilder);
-    return builder;
-  }
+  
   
 }
