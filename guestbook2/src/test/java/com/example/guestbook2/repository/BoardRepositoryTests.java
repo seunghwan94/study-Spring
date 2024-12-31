@@ -89,7 +89,18 @@ public class BoardRepositoryTests {
 
   @Test
   public void testGetBoardByBno(){
-    Object[] result = repository.getBoardByBno(2L);
-    log.info(Arrays.toString(result));
+    Object[] result = (Object[])repository.getBoardByBno(2L);
+    log.info(result);
+  }
+
+  @Test
+  public void testSearch1(){
+    repository.search1();
+  }
+
+  @Test
+  public void testSearchPage(){
+    // repository.searchPage("T","제목",PageRequest.ofSize(10));
+    repository.searchPage("T","제목",PageRequest.of(0,10,Sort.by(Direction.DESC, "bno", "title")));
   }
 }

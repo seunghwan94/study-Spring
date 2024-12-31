@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class BoardDto {
   private Long bno;
-  private String titile;
+  private String title;
   private String content;
   private String memberEmail;
   private String memberName;
   private LocalDateTime regDate;
   private LocalDateTime modDate;
-  private int replyCnt;
+  private Long replyCnt;
 }

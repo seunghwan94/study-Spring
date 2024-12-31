@@ -11,9 +11,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.guestbook2.domain.entity.Board;
+import com.example.guestbook2.repository.search.SearchBoardRepository;
 
 @Repository
-public interface BoardRepository extends JpaRepository<Board, Long>{
+public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository{
   // jpql 사용 한다.
   @Query("select b, m  from tbl_board b left join member m where b.bno = :bno")
   Object getBoardWithMember(@Param("bno") Long bno);
@@ -30,12 +31,12 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
   Page<Object[]> getBoardWithReplyCounf(Pageable pageable);
 
 
-  @Query("select m, b, count(r)\r\n" + //
+  @Query("select count(r), m, b\r\n" + //
           "FROM tbl_board b\r\n" + //
           "left join member m\r\n" + //
           "left join tbl_reply r on b = r.board\r\n" + //
           "where b.bno = :bno")
-  Object[] getBoardByBno(@Param("bno") Long bno);
+  Object getBoardByBno(@Param("bno") Long bno);
 
 
 }
