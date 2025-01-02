@@ -43,7 +43,11 @@ dependencies {
 	implementation 'com.querydsl:querydsl-sql:5.1.0'
 	// log4j2
 	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
-
+	// log jdbc 설정(query 정리되어서 출력)
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+	testImplementation 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	
 }
 
 configurations {
@@ -54,6 +58,12 @@ configurations {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+// log
+configurations {
+	all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
+}
+
 // QueryDSL build 할때 오류 생길시 사용(build 전에 dir있으면 지우겠다.)
 tasks.compileJava {
     // QueryDSL 파일 생성 디렉토리 삭제

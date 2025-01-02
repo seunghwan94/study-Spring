@@ -2,8 +2,8 @@ spring:
   application:
     name: thymeleaf
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://15.164.103.52:3306/thymeleaf
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mariadb://15.164.103.52:3306/thymeleaf
     username: thymeleaf
     password: 1234
 
@@ -13,8 +13,8 @@ spring:
       ddl-auto: update # 배포할땐 이렇게하면 망할수 있으니 조심 (배포할때 끄기)
     properties:
       hibernate:
-        # format_sql: true
-        # use_sql_comments: true
+        format_sql: true
+        use_sql_comments: true
     show-sql: true # SQL 로그 출력
     database-platform: org.hibernate.dialect.MariaDBDialect
 
