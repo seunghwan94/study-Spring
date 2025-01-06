@@ -73,6 +73,7 @@ src/main/java
   
     @Bean: Java Config에서 빈을 정의.
 
+
 ## AOP (Aspect-Oriented Programming - 관점 지향 프로그래밍)
   Cross-Cutting Concern (횡단 관심사)
 
@@ -93,11 +94,15 @@ src/main/java
 
 ex_) 로깅, 트랜잭션, 보안, 캐싱, 예외처리 ...
 
+
 ## Scheduling (Task)
   - @EnableScheduling
   - @Scheduled(cron = "0 0/1 * * * ?")  //초 분 시 일 월 요일 [년]
 
+
 ## Security
+
+
 ## Testing
   - Given-When-Then
       - assertEquals(a, b);
