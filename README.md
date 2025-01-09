@@ -96,12 +96,22 @@ ex_) 로깅, 트랜잭션, 보안, 캐싱, 예외처리 ...
 
 
 ## Scheduling (Task)
-  - @EnableScheduling
-  - @Scheduled(cron = "0 0/1 * * * ?")  //초 분 시 일 월 요일 [년]
+- @EnableScheduling
+- @Scheduled(cron = "0 0/1 * * * ?")  //초 분 시 일 월 요일 [년]
 
 
-## Security
+## Security (Auth 관련)
+#### 기본 개념
+- Authentication (인증)
+- Authorization (권한 부여)
+- Filter Chain (필터 체인)
+- HTTP 보안 설정
 
+UsernamePasswordAuthenticationToken
+AuthenticationManager
+AuthenticationProvider
+
+- PasswordIncorder
 
 ## Testing
   - Given-When-Then
