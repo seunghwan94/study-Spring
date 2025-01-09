@@ -1,4 +1,4 @@
-package com.example.thymeleaf.repository;
+package com.example.thymeleaf.repositoryTests;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,6 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.thymeleaf.domain.entity.Todo;
 import com.example.thymeleaf.domain.entity.User;
+import com.example.thymeleaf.repository.ReplyRepository;
+import com.example.thymeleaf.repository.TodoRepository;
+import com.example.thymeleaf.repository.UserRepository;
 
 
 @SpringBootTest
@@ -19,11 +22,13 @@ public class TodoRepositoryTest {
   @Autowired
   private UserRepository userRepository;
   @Autowired
+  private ReplyRepository replyRepository;
+  @Autowired
   private TodoRepository repository;
 
   @Test
   public void testSave(){
-    Optional<User> user = userRepository.findById(2L);
+    Optional<User> user = userRepository.findById(4L);
     assert(user).isPresent();
 
     Todo saveTodo = repository.save(Todo.builder()
@@ -35,7 +40,6 @@ public class TodoRepositoryTest {
     assertNotNull(saveTodo.getUser());
     assertNotNull(saveTodo.getUser().getUno());
   }
-
 
   @Test
   public void testUpdate(){
@@ -64,11 +68,16 @@ public class TodoRepositoryTest {
 
   @Test
   public void testDelete(){
-    Optional<Todo> todo = repository.findById(1L);
-    assertTrue(todo.isPresent());
+    // target
+    Long tno = 8L;
     
+    Optional<Todo> todo = repository.findById(tno);
+    assertTrue(todo.isPresent());
+    // when
+    replyRepository.deleteByTodo(todo.get().getTno());
     repository.deleteById(todo.get().getTno());
-    todo = repository.findById(1L);
+    // then
+    todo = repository.findById(tno);
     assertTrue(todo.isEmpty());
   }
 

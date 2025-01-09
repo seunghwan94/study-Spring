@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>member</h1>
+  <div>
+    <a href="all">all</a>
+    <a href="member">member</a>
+    <a href="admin">admin</a>
+    <a href="/member/signout">로그아웃</a>
+  </div>
+  <div sec:authorize="hasRole('USER')">USER ROLE</div>
+  <div sec:authorize="hasRole('MANAGER')">MANAGER ROLE</div>
+  <div sec:authorize="hasRole('ADMIN')">ADMIN ROLE</div>
+  <div sec:authentication="principal"></div>
+  <div sec:authentication="principal.username"></div>
+  <div sec:authentication="principal.authorities"></div>
+
+  </div>
+  
+</body>
+</html>

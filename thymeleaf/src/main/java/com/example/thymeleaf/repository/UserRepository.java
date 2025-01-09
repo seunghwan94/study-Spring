@@ -13,5 +13,6 @@ import com.example.thymeleaf.domain.entity.User;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-  
+
+
 }
