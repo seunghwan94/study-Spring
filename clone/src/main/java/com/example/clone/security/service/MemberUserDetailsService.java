@@ -20,8 +20,6 @@ public class MemberUserDetailsService implements UserDetailsService{
   @Autowired
   private MemberRepositroy repositroy;
 
-
-
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,7 +29,7 @@ public class MemberUserDetailsService implements UserDetailsService{
       throw new UsernameNotFoundException(username);
     }
 
-    AuthMemberDto authMemberDto = new AuthMemberDto(member.getEmail(), member.getPassword(), member.getMno(), member.isFromSocial()
+    AuthMemberDto authMemberDto = new AuthMemberDto(member.getEmail(), member.getPassword(), member.getMno(), member.getFromSocial()
       , member.getName(), member.getRoleSet().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.name())).toList());
     
     return authMemberDto;

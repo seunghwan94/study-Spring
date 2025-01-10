@@ -32,7 +32,7 @@ public class Member extends BaseEntity{
 
   private String name;
 
-  private boolean fromSocial;
+  private Boolean fromSocial;
 
   @Builder.Default
   @ElementCollection(fetch = FetchType.LAZY)
