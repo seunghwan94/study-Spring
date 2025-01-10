@@ -30,6 +30,7 @@ public class SecurityConfig {
           .authorizeHttpRequests(auth -> auth
             .requestMatchers("/sample/all").permitAll() // `/public/` 경로는 인증 없이 접근 가능
             .requestMatchers("/sample/member").hasRole("USER") // `/public/` 경로는 인증 없이 접근 가능
+            .requestMatchers("/api/**").permitAll()
             // .requestMatchers("/sample/admin").hasRole("ADMIN") // `/public/` 경로는 인증 없이 접근 가능
             .anyRequest().authenticated() // 나머지는 인증 필요
           )
