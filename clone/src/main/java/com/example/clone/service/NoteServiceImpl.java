@@ -1,11 +1,9 @@
 package com.example.clone.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.example.clone.entity.Note;
 import com.example.clone.entity.dto.NoteDto;
 import com.example.clone.repository.NoteRepository;
 
@@ -25,8 +23,9 @@ public class NoteServiceImpl implements NoteService{
   }
 
   @Override
-  public List<NoteDto> list() {
-    return repository.findAll().stream().map(this::toDto).toList();
+  public List<NoteDto> list(String email) {
+
+    return repository.findByMemberEmail(email).stream().map(this::toDto).toList();
   }
 
   @Override

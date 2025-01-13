@@ -9,7 +9,7 @@ import com.example.clone.entity.dto.NoteDto;
 
 public interface NoteService{
   NoteDto get(Long num);
-  List<NoteDto> list();
+  List<NoteDto> list(String email);
   NoteDto write(NoteDto dto);
   int modify(NoteDto dto);
   int remove(Long num);

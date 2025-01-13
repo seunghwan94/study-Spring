@@ -21,7 +21,7 @@
         <Logger level="warn" name="jdbc.connection" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger level="info" name="com.hjham" additivity="false">
+        <Logger level="info" name="com.example" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
     </Loggers>

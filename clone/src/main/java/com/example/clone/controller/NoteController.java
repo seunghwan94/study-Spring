@@ -30,10 +30,11 @@ public class NoteController {
       return ResponseEntity.ok().body(service.get(num));
   }
 
-  @GetMapping("")
-  public ResponseEntity<?> list() {
+  @GetMapping("list")
+  public ResponseEntity<?> list(String email) {
     log.error("list");
-    return ResponseEntity.ok().body(service.list());
+    log.error(email);
+    return ResponseEntity.ok().body(service.list(email));
   }
 
   @PostMapping
@@ -45,15 +46,13 @@ public class NoteController {
   }
   
   @PutMapping("{num}")
-  public ResponseEntity<?> modify(@PathVariable Long num, @RequestBody NoteDto dto) {
-    service.modify(dto);
-    return ResponseEntity.ok().body("success");
+  public String modify(@PathVariable Long num, @RequestBody NoteDto dto) {
+    return service.modify(dto) > 0 ? "success" : "fail";
   }
 
   @DeleteMapping("{num}")
-  public ResponseEntity<?> remove(@PathVariable Long num){
-    service.remove(num);
-    return ResponseEntity.ok().body("success");
+  public String remove(@PathVariable Long num){
+    return service.remove(num) > 0 ? "success" : "fail";
   }
 
 }

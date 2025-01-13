@@ -25,7 +25,7 @@ public class NoteServiceTests {
 
   @Test
   public void testList(){
-    log.info(service.list());
+    log.info(service.list("user100@a.com"));
   }
 
   @Test
