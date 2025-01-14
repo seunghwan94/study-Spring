@@ -1,6 +1,7 @@
 package com.example.clone.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class NoteServiceImpl implements NoteService{
   private NoteRepository repository;
   
   @Override
-  public NoteDto get(Long num) {
-    return toDto(repository.findByNum(num));
+  public Optional<NoteDto> get(Long num) {
+    return repository.findById(num).map(this::toDto);
   }
 
   @Override
@@ -44,7 +45,10 @@ public class NoteServiceImpl implements NoteService{
   public NoteDto write(NoteDto dto) {
     return toDto(repository.save(toEntity(dto)));
   }
-  
 
+  @Override
+  public List<NoteDto> listAll() {
+    return repository.findAll().stream().map(this::toDto).toList();
+  }
 
 }

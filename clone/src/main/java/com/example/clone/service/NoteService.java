@@ -1,6 +1,7 @@
 package com.example.clone.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.clone.entity.Member;
 import com.example.clone.entity.Note;
@@ -8,8 +9,9 @@ import com.example.clone.entity.dto.NoteDto;
 
 
 public interface NoteService{
-  NoteDto get(Long num);
+  Optional<NoteDto> get(Long num);
   List<NoteDto> list(String email);
+  List<NoteDto> listAll();
   NoteDto write(NoteDto dto);
   int modify(NoteDto dto);
   int remove(Long num);

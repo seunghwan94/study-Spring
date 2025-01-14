@@ -1,5 +1,7 @@
 package com.example.clone.config;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.example.clone.security.filter.ApiCheckFilter;
 import com.example.clone.security.filter.ApiLoginFilter;
@@ -63,7 +68,21 @@ public class SecurityConfig{
       return new BCryptPasswordEncoder();
   };
 
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource(){
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowCredentials(true);
+    config.setAllowedOrigins(List.of("http://localhost:3000"));
+    config.setAllowedMethods(List.of("GET","POST","PUT","DELETE"));
+    config.setAllowedHeaders(List.of("*"));
+    config.setExposedHeaders(List.of("*"));
     
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+    return source;
+  }
+
+
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -76,12 +95,12 @@ public class SecurityConfig{
           // .anyRequest().authenticated() // 나머지는 인증 필요
           .anyRequest().permitAll()
         )
-        .formLogin(f -> f.permitAll()) // 기본 로그인 폼 활성화
         .logout(l -> l.logoutUrl("/member/signout"))
-        .oauth2Login(o -> o.successHandler(loginSuccessHandler()))
+        // .oauth2Login(o -> o.successHandler(loginSuccessHandler()))
         .rememberMe(r -> r.tokenValiditySeconds(60 * 60 * 24 * 14)
           .userDetailsService(userDetailsService)
-          .rememberMeCookieName("remember-id"));
+          .rememberMeCookieName("remember-id"))
+        .cors(c -> c.configurationSource(corsConfigurationSource()));
 
     http
       .addFilterBefore(apiCheckFilter(), UsernamePasswordAuthenticationFilter.class)

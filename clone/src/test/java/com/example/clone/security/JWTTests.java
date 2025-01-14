@@ -24,7 +24,7 @@ public class JWTTests {
     String email = "user100@a.com";
     String str = jwtUtil.generateToken(email);
     log.info(str);
-    // eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzY3NTE1NTgsImV4cCI6MTczOTQyOTk1OCwic3ViIjoidXNlcjEwMEBhLmNvbSJ9._4ezdNKtHsoB8Er9FeZT3gpG-KdfbgouxY4eO-1803s
+    // eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzY4MTYwMTUsImV4cCI6MTczOTQ5NDQxNSwic3ViIjoidXNlcjEwMEBhLmNvbSJ9.HpOBVkIea2aD9BLyER-m80lg1Vo-ZEnyVUAks2vZ-Fw
   }
 
   @Test
