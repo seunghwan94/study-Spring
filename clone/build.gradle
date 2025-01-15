@@ -67,6 +67,12 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
 
+
+    // AWS SDK for S3
+	implementation 'software.amazon.awssdk:s3:2.20.112'  // 버전 명시적으로 추가
+	implementation 'software.amazon.awssdk:core:2.20.112'  // core 의존성 추가
+	implementation platform('software.amazon.awssdk:bom:2.20.112')  // BOM 관리
+
 }
 
 tasks.named('test') {

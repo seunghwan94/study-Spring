@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.clone.entity.Member;
 import com.example.clone.entity.dto.NoteDto;
+import com.example.clone.repository.MemberRepositroy;
 import com.example.clone.repository.NoteRepository;
 
 import jakarta.transaction.Transactional;
@@ -17,6 +19,7 @@ import lombok.AllArgsConstructor;
 public class NoteServiceImpl implements NoteService{
   
   private NoteRepository repository;
+  private MemberRepositroy memberRepositroy;
   
   @Override
   public Optional<NoteDto> get(Long num) {
@@ -43,6 +46,8 @@ public class NoteServiceImpl implements NoteService{
 
   @Override
   public NoteDto write(NoteDto dto) {
+    Member member = memberRepositroy.findByEmail(dto.getMemberEmail());
+    dto.setMemberMno(member.getMno());
     return toDto(repository.save(toEntity(dto)));
   }
 

@@ -38,3 +38,4 @@ out/
 .vscode/
 
 application-oauth.yml
+application-s3.yml
