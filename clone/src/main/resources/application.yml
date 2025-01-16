@@ -1,6 +1,11 @@
 server:
   port: 9999
 spring:
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+        
   application:
     name: clone
   datasource:

@@ -1,11 +1,15 @@
 package com.example.clone.entity.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.Builder.Default;
 
 @Getter
 @Setter
@@ -20,4 +24,7 @@ public class NoteDto {
   private Long memberMno;
   private String memberEmail;
   private String memberName;
+
+  @Default
+  private List<AttachDto> attachDtos = new ArrayList<>();
 }

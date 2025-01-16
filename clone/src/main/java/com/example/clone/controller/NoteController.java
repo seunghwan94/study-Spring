@@ -60,7 +60,7 @@ public class NoteController {
 
   @PostMapping
   public ResponseEntity<?> write(@RequestBody NoteDto dto) {
-    log.error("write");
+    log.info("write : " + dto);
     service.write(dto);
     return ResponseEntity.ok().body("success");
   }

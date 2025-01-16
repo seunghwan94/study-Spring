@@ -3,8 +3,10 @@ package com.example.clone.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.clone.entity.Attach;
 import com.example.clone.entity.Member;
 import com.example.clone.entity.Note;
+import com.example.clone.entity.dto.AttachDto;
 import com.example.clone.entity.dto.NoteDto;
 
 
@@ -17,7 +19,7 @@ public interface NoteService{
   int remove(Long num);
 
   default Note toEntity(NoteDto dto){
-    return Note.builder()
+    Note note = Note.builder()
       .num(dto.getNum())
       .title(dto.getTitle())
       .content(dto.getContent())
@@ -26,7 +28,23 @@ public interface NoteService{
         .email(dto.getMemberEmail())
         .name(dto.getMemberName())
       .build())
-    .build();
+    .build();    
+     
+    note.setAttachs(dto.getAttachDtos().stream().map(a -> 
+      Attach.builder()
+        .uuid(a.getUuid())
+        .origin(a.getOrigin())
+        .image(a.isImage())
+        .path(a.getPath())
+        .size(a.getSize())
+        .mime(a.getMime())
+        .fileName(a.getFileName())
+        .ext(a.getExt())
+        .url(a.getUrl())
+        .note(note)
+      .build())
+    .toList());
+    return note;
   }
 
   default NoteDto toDto(Note note){
@@ -37,6 +55,18 @@ public interface NoteService{
       .memberMno(note.getMember().getMno())
       .memberEmail(note.getMember().getEmail())
       .memberName(note.getMember().getName())
+      .attachDtos(note.getAttachs().stream().map(a->
+        AttachDto.builder()
+          .uuid(a.getUuid())
+          .origin(a.getOrigin())
+          .image(a.isImage())
+          .path(a.getPath())
+          .size(a.getSize())
+          .mime(a.getMime())
+          .fileName(a.getFileName())
+          .ext(a.getExt())
+          .url(a.getUrl())
+        .build()).toList())
     .build();
   }
 }
