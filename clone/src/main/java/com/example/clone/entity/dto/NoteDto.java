@@ -24,6 +24,8 @@ public class NoteDto {
   private Long memberMno;
   private String memberEmail;
   private String memberName;
+  private long likesCnt;
+  private long AttachCnt;
 
   @Default
   private List<AttachDto> attachDtos = new ArrayList<>();

@@ -2,6 +2,8 @@ package com.example.clone.entity.composite;
 
 import java.io.Serializable;
 
+import com.example.clone.entity.dto.LikesDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -18,4 +20,9 @@ import lombok.Setter;
 public class LikesId implements Serializable {
   private Long member;
   private Long note;
+
+  public LikesId(LikesDto dto){
+    member = dto.getMno();
+    note = dto.getNum();
+  }
 }

@@ -53,4 +53,9 @@ public class NoteRepositoryTests {
     repository.findByMemberEmail("user100@a.com").forEach(log::info);
   }
 
+  @Test
+  public void testFindNotesBy(){
+    repository.findNotesBy("user100@a.com").forEach(log::info);
+  }
+
 }

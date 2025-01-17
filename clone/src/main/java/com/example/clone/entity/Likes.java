@@ -11,14 +11,16 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "tbl_liskes")
+@Entity(name = "tbl_likes")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EnableJpaRepositories
 @IdClass(LikesId.class)
+@Getter
 public class Likes extends BaseEntity {
   @Id
   @ManyToOne(fetch = FetchType.LAZY)

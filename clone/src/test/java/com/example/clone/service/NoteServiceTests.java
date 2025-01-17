@@ -57,4 +57,6 @@ public class NoteServiceTests {
     log.info(service.remove(8L));
   }
 
+  
+
 }

@@ -54,7 +54,7 @@ public class NoteController {
   }
 
   @GetMapping("listall")
-  public ResponseEntity<?> list() {
+  public ResponseEntity<?> listAll() {
     return ResponseEntity.ok().body(service.listAll());
   }
 
